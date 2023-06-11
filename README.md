@@ -24,7 +24,6 @@
   - **Nome**: o nome completo do lutador.
   - **Categoria de Peso**: a categoria de peso em que o lutador compete (por exemplo, peso leve, peso médio, peso pesado).
   - **País de Origem**: o país de origem do lutador.
-  - **Estatísticas de Lutas**: informações estatísticas sobre as lutas do lutador, como número total de vitórias, derrotas, empates, nocautes, finalizações, entre outros.
   - **Idade**: idade do lutador. 
   - **Altura**: altura do lutador. 
   - **Alcance**: alcance do lutador do lutador. 
