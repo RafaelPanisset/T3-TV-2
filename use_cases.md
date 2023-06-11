@@ -53,17 +53,6 @@
 1. O usuário seleciona a opção de visualizar a lista de lutas.
 2. O sistema exibe uma lista de todas as lutas cadastradas, incluindo suas informações.
 
-**Atualização do status da luta**
-
-**Caso Feliz:**
-1. O usuário escolhe atualizar o status de uma luta específica.
-2. O sistema exibe a luta selecionada com seus detalhes atuais.
-3. O usuário informa o resultado da luta (empate ou vitória de um lutador).
-4. O sistema atualiza o status da luta conforme o resultado informado.
-
-**Fluxo Alternativo:**
-- Se o usuário tentar atualizar o status de uma luta que não existe, o sistema exibe uma mensagem de erro.
-
 **Exclusão**
 
 **Caso Feliz:**
