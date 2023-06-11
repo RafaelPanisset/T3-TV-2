@@ -185,8 +185,8 @@
 
 **Caso Feliz:**
 1. O usuário seleciona a opção de criar um novo usuário.
-2. O sistema solicita o nome do usuário.
-3. O usuário fornece o nome do usuário.
+2. O sistema solicita o nome e senha do usuário.
+3. O usuário fornece o nome e senha do usuário.
 4. O sistema cria o usuário.
 
 ### Atualização
