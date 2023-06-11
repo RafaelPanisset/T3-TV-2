@@ -5,7 +5,7 @@
 ### Criação
 
 1. O usuário seleciona a opção de criar um novo lutador.
-2. O sistema solicita as informações necessárias para criar o lutador, como nome, categoria de peso, país de origem e estatísticas de lutas.
+2. O sistema solicita as informações necessárias para criar o lutador, como nome, categoria de peso, país de origem e etc.
 3. O sistema cria o lutador com os dados fornecidos.
 
 ### Leitura
