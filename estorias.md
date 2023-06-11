@@ -1,51 +1,194 @@
 
 # Estorias
 
-Funcionalidade: Gerenciamento de Eventos do UFC
+Funcionalidade: Criação de lutadores
 
-**Cenário**: Acompanhar informações de um evento de UFC
+**Cenário**: Criação de lutador com informações corretas:
+ - ***Given*** que o usuário selecionou a opção de criar um novo lutador
+ - ***When*** o usuário fornece todas as informações corretamente
+ - ***Then*** o sistema cria o lutador com os dados fornecidos
 
- - ***Dado*** que sou um usuário interessado em UFC
-- ***Quando*** acesso a seção de eventos
-- ***Então*** devo poder ver uma lista de eventos do UFC com seus respectivos nomes, datas, locais e listas de lutas programadas
+**Cenário**: Tentativa de criação de lutador sem informações necessárias
+  - ***Given*** que o usuário selecionou a opção de criar um novo lutador
+  - ***When***  o usuário não fornece todas as informações necessárias
+  - ***Then*** o sistema exibe uma mensagem de erro e solicita as informações novamente
 
-Cenário: Visualizar resultados de lutas de um evento do UFC
-- ***Dado*** que sou um usuário interessado em UFC
-- ***Quando***  acesso a seção de resultados de lutas
-- ***Então***  devo poder visualizar os resultados de todas as lutas de um evento específico do UFC, incluindo os lutadores envolvidos, o resultado (vitória, derrota ou empate), o método de vitória e a duração da luta
+Funcionalidade: Leitura de lutadores
 
-Cenário: Gerenciar lutadores
-- ***Dado*** que sou um administrador do sistema
-- ***Quando***  acesso a seção de gerenciamento de lutadores
-- ***Então*** devo poder criar, ler, atualizar e excluir informações de lutadores, incluindo seu nome, idade, peso, nacionalidade e estatísticas de lutas
+**Cenário**: Visualização da lista de lutadores
+  - ***Given***  que o usuário selecionou a opção de visualizar a lista de lutadores
+  - ***Then***  o sistema exibe uma lista de todos os lutadores cadastrados, incluindo suas informações
 
-Cenário: Gerenciar lutas
-- ***Dado*** que sou um administrador do sistema
-- ***Quando***  acesso a seção de gerenciamento de lutas
-- ***Então*** devo poder criar, ler, atualizar e excluir informações de lutas, incluindo os lutadores envolvidos, o evento em que a luta ocorreu, o resultado (vitória, derrota ou empate), o método de vitória e a duração da luta
+Funcionalidade: Atualização de lutadores
 
-Cenário: Gerenciar eventos
-- ***Dado*** que sou um administrador do sistema
-- ***Quando*** acesso a seção de gerenciamento de eventos
-- ***Então*** devo poder criar, ler, atualizar e excluir informações de eventos, incluindo seu nome, data, local e lista de lutas programadas
+**Cenário**: Atualização de informações de um lutador específico
+ - ***Given*** que o usuário escolhe editar as informações de um lutador específico
+ - ***When***  o usuário atualiza as informações desejadas do lutador
+ - ***Then*** o sistema salva as alterações realizadas
 
-Cenário: Gerenciar cards
-- ***Dado*** que sou um administrador do sistema
-- ***Quando***  acesso a seção de gerenciamento de cards
-- ***Então*** devo poder criar, ler, atualizar e excluir informações de cards, incluindo as lutas programadas e os eventos aos quais estão associados
+ **Cenário**: Tentativa de atualização de um lutador inexistente
+   - ***Given*** que o usuário tenta atualizar um lutador que não existe
+   - ***Then*** o sistema exibe uma mensagem de erro
 
-Cenário: Gerenciar permissões
-- ***Dado*** que sou um administrador do sistema
-- ***Quando*** acesso a seção de gerenciamento de permissões
-- ***Então*** devo poder criar, ler, atualizar e excluir permissões de acesso para diferentes usuários do sistema
+Funcionalidade: Exclusão de lutadores
 
-Cenário: Gerenciar usuários
-- ***Dado*** que sou um administrador do sistema
-- ***Quando***  acesso a seção de gerenciamento de usuários
-- ***Então*** devo poder criar, ler, atualizar e excluir informações de usuários, incluindo seu nome, e-mail, senha e permissões de acesso
+**Cenário**: Exclusão de um lutador
+ - ***Given*** que o usuário seleciona a opção de excluir um lutador
+ - ***Then*** o sistema confirma a exclusão do lutador selecionado
 
-Cenário: Alterar status de uma luta
-- ***Dado***  que sou um administrador do sistema
-- ***Quando*** acesso a seção de alteração de status de lutas
-- ***Então*** devo poder selecionar uma luta específica
-E alterar seu status para empate, vitória de um lutador específico ou resultado pendente de verificação
+**Cenário**: Tentativa de exclusão de um lutador inexistente
+ - ***Given*** que o usuário tenta excluir um lutador que não existe
+ - ***Then*** o sistema exibe uma mensagem de erro
+
+Funcionalidade: Criação de lutas
+
+**Cenário**: Criação de uma nova luta com informações corretas
+ - ***Given*** que o usuário escolhe criar uma nova luta
+ - ***When*** o usuário fornece todas as informações corretamente
+ - ***Then*** o sistema cria a luta com os dados fornecidos
+
+**Cenário**: Tentativa de criação de uma luta sem informações necessárias
+ - ***Given***  que o usuário escolhe criar uma nova luta
+  - ***When*** o usuário não fornece todas as informações necessárias
+  - ***Then*** o sistema exibe uma mensagem de erro e solicita as informações novamente
+
+Funcionalidade: Leitura de lutas
+
+ **Cenário**: Visualização da lista de lutas
+  - ***Given*** que o usuário selecionou a opção de visualizar a lista de lutas
+  - ***Then***  o sistema exibe uma lista de todas as lutas cadastradas, incluindo suas informações
+
+Funcionalidade: Exclusão de lutas
+
+ **Cenário**: Exclusão de uma luta
+  - ***Given*** que o usuário seleciona a opção de excluir uma luta
+  - ***Then***  o sistema confirma a exclusão da luta selecionada
+
+ **Cenário**: Tentativa de exclusão de uma luta inexistente
+   - ***Given***  que o usuário tenta excluir uma luta que não existe
+   - ***Then***  o sistema exibe uma mensagem de erro
+
+Funcionalidade: Criação de eventos
+
+ **Cenário**: Criação de um novo evento com informações corretas
+  - ***Given*** que o usuário seleciona a opção de criar um novo evento
+  - ***When*** o usuário fornece todas as informações corretamente
+  - ***Then*** o sistema cria o evento com os dados fornecidos
+
+ **Cenário**: Tentativa de criação de um evento sem informações necessárias
+   - ***Given*** que o usuário seleciona a opção de criar um novo evento
+   - ***When*** o usuário não fornece todas as informações necessárias
+   - ***Then*** o sistema exibe uma mensagem de erro e solicita as informações novamente
+
+Funcionalidade: Leitura de eventos
+
+**Cenário**: Visualização da lista de eventos
+ - ***Given*** que o usuário selecionou a opção de visualizar a lista de eventos
+ - ***Then*** o sistema exibe uma lista de todos os eventos cadastrados, incluindo suas informações
+
+Funcionalidade: Atualização de eventos
+
+**Cenário**: Atualização de informações de um evento específico
+ - ***Given***  que o usuário escolhe editar as informações de um evento específico
+ - ***When*** o usuário atualiza as informações desejadas do evento
+ - ***Then*** o sistema salva as alterações realizadas
+
+**Cenário**: Tentativa de atualização de um evento inexistente
+ - ***Given*** que o usuário tenta atualizar um evento que não existe
+ - ***Then*** o sistema exibe uma mensagem de erro
+
+Funcionalidade: Exclusão de eventos
+
+**Cenário**: Exclusão de um evento
+  - ***Given*** que o usuário seleciona a opção de excluir um evento
+  - ***Then*** o sistema confirma a exclusão do evento selecionado
+
+**Cenário**: Tentativa de exclusão de um evento inexistente
+   - ***Given*** que o usuário tenta excluir um evento que não existe
+   - ***Then*** o sistema exibe uma mensagem de erro
+
+Funcionalidade: Criação de cards
+
+**Cenário**: Criação de um novo card com nome válido
+  - ***Given*** que o usuário seleciona a opção de criar um novo card
+  - ***When***  o usuário fornece um nome válido para o card
+  - ***Then*** o sistema cria o card
+
+Funcionalidade: Leitura de cards
+
+ **Cenário**: Visualização da lista de cards
+   - ***Given*** que o usuário selecionou a opção de visualizar a lista de cards
+   - ***Then*** o sistema exibe uma lista de todos os cards
+
+Funcionalidade: Exclusão de cards
+
+**Cenário**: Exclusão de um card
+  - ***Given***  que o usuário seleciona a opção de excluir um card
+  - ***Then***  o sistema confirma a exclusão do card selecionado
+
+**Cenário**: Tentativa de exclusão de um card inexistente
+  - ***Given*** que o usuário tenta excluir um card que não existe
+  - ***Then***  o sistema exibe uma mensagem de erro
+
+Funcionalidade: Criação de permissões
+
+**Cenário**: Criação de uma nova permissão com nome válido
+  - ***Given*** que o usuário seleciona a opção de criar uma nova permissão
+  - ***When*** o usuário fornece um nome válido para a permissão
+  - ***Then*** o sistema cria a permissão
+
+**Cenário**: Tentativa de criação de uma permissão sem nome
+  - ***Given*** que o usuário seleciona a opção de criar uma nova permissão
+  - ***When*** o usuário não fornece o nome da permissão
+  - ***Then*** o sistema exibe uma mensagem de erro e solicita o nome novamente
+
+Funcionalidade: Leitura de permissões
+
+**Cenário**: Visualização da lista de permissões
+  - ***Given***  que o usuário selecionou a opção de visualizar a lista de permissões
+  - ***Then*** o sistema exibe uma lista de todas as permissões
+
+Funcionalidade: Exclusão de permissões
+
+**Cenário**: Exclusão de uma permissão
+  - ***Given*** que o usuário seleciona a opção de excluir uma permissão
+  - ***Then*** o sistema confirma a exclusão da permissão selecionada
+
+**Cenário**: Tentativa de exclusão de uma permissão inexistente
+  - ***Given*** que o usuário tenta excluir uma permissão que não existe
+  - ***Then*** o sistema exibe uma mensagem de erro
+
+Funcionalidade: Criação de usuários
+
+**Cenário**: Criação de um novo usuário com nome e senha válidos
+  - ***Given*** que o usuário seleciona a opção de criar um novo usuário
+  - ***When*** o usuário fornece um nome e senha válidos para o usuário
+  - ***Then***  o sistema cria o usuário
+
+Funcionalidade: Atualização de usuários
+
+**Cenário**: Atualização de informações de um usuário
+  - ***Given*** que o usuário seleciona a opção de atualizar um usuário
+  - ***When*** o usuário atualiza as informações desejadas do usuário
+  - ***Then***  o sistema salva as alterações realizadas
+
+**Cenário**: Tentativa de atualização de um usuário inexistente
+ - ***Given***  que o usuário tenta atualizar um usuário que não existe
+ - ***Then*** o sistema exibe uma mensagem de erro
+
+Funcionalidade: Leitura de usuários
+
+**Cenário**: Visualização da lista de usuários
+ - ***Given*** que o usuário selecionou a opção de visualizar a lista de usuários
+ - ***Then*** o sistema exibe uma lista de todos os usuários
+
+Funcionalidade: Exclusão de usuários
+
+**Cenário**: Exclusão de um usuário
+ - ***Given*** que o usuário seleciona a opção de excluir um usuário
+ - ***Then*** o sistema confirma a exclusão do usuário selecionado
+
+**Cenário**: Tentativa de exclusão de um usuário inexistente
+- ***Given*** que o usuário tenta excluir um usuário que não existe
+- ***Then*** o sistema exibe uma mensagem de erro
+
