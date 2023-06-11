@@ -1,34 +1,3 @@
-
-# Casos de Uso:
-
-## Acompanhar eventos
-
-**Descrição:** Possibilita aos usuários acompanhar os eventos de UFC, visualizando informações como nome, data, local e lista de lutas programadas.
-
-### Caso principal
-
-1. O usuário seleciona a opção de acompanhar eventos de UFC.
-2. O sistema exibe uma lista de eventos de UFC, incluindo nome, data, local e lista de lutas programadas.
-
-### Fluxos alternativos
-
-- Se não houver eventos de UFC disponíveis:
-  - O sistema exibe uma mensagem informando que não há eventos programados.
-
-## Visualizar resultados de lutas
-
-**Descrição:** Permite aos usuários visualizar os resultados das lutas de cada evento, incluindo os lutadores envolvidos, resultado, método de vitória e duração.
-
-### Caso principal
-
-1. O usuário escolhe visualizar os resultados de uma luta de um evento específico.
-2. O sistema exibe informações dos lutadores e quem ganhou a luta.
-
-### Fluxos alternativos
-
-- Se ainda não tem vencedor:
-  - O sistema exibe uma mensagem informando que os resultados ainda não estão disponíveis.
-
 ## CRUD de lutadores
 
 **Descrição:** Permite realizar operações de criação, leitura, atualização e exclusão (CRUD) de lutadores.
