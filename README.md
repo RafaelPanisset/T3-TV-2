@@ -1,7 +1,7 @@
 # T3-TV-2
-#Sistema de gerenciamento de lutas em diferentes eventos do UFC.
+# Sistema de gerenciamento de lutas em diferentes eventos do UFC.
 
-#Entidades:
+# Entidades:
 ## Lutador
 - A entidade "Lutador" representa um competidor de MMA.
 - Atributos:
