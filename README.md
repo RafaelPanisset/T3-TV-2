@@ -44,11 +44,18 @@
   - **Método de Vitória**: o método pelo qual a luta foi decidida (nocaute, finalização, decisão).
   - **Duração**: a duração da luta, em minutos ou rounds.
 
+## Permissão
+- A entidade "Permissão" representa uma permissão para cada usuário, as permissões vão ser apenas ADM e usuário.
+- Atributos:
+  - **Id**: Id da luta.
+  - **Nome da permissão (Login)**: o nome de permissão.
+
 ## Usuário
 - A entidade "Usuário" representa um usuário do sistema, com acesso ao projeto relacionado ao MMA.
 - Atributos:
   - **Id**: Id da luta.
   - **Nome de Usuário (Login)**: o nome de usuário para autenticação no sistema.
+  - **Id da permissão**: o id de permissão da pessoa.
   - **Senha**: a senha associada ao nome de usuário para autenticação.
   - **Nome Completo**: o nome completo do usuário.
 
