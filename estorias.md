@@ -1,6 +1,69 @@
 
 # Estorias
 
+Funcionalidade: Criação de eventos
+
+ **Cenário**: Criação de um novo evento com informações corretas
+  - ***Given*** que o usuário seleciona a opção de criar um novo evento
+  - ***When*** o usuário fornece todas as informações corretamente
+  - ***Then*** o sistema cria o evento com os dados fornecidos
+
+ **Cenário**: Tentativa de criação de um evento sem informações necessárias
+   - ***Given*** que o usuário seleciona a opção de criar um novo evento
+   - ***When*** o usuário não fornece todas as informações necessárias
+   - ***Then*** o sistema exibe uma mensagem de erro e solicita as informações novamente
+
+Funcionalidade: Leitura de eventos
+
+**Cenário**: Visualização da lista de eventos
+ - ***Given*** que o usuário selecionou a opção de visualizar a lista de eventos
+ - ***Then*** o sistema exibe uma lista de todos os eventos cadastrados, incluindo suas informações
+
+Funcionalidade: Atualização de eventos
+
+**Cenário**: Atualização de informações de um evento específico
+ - ***Given***  que o usuário escolhe editar as informações de um evento específico
+ - ***When*** o usuário atualiza as informações desejadas do evento
+ - ***Then*** o sistema salva as alterações realizadas
+
+**Cenário**: Tentativa de atualização de um evento inexistente
+ - ***Given*** que o usuário tenta atualizar um evento que não existe
+ - ***Then*** o sistema exibe uma mensagem de erro
+
+Funcionalidade: Exclusão de eventos
+
+**Cenário**: Exclusão de um evento
+  - ***Given*** que o usuário seleciona a opção de excluir um evento
+  - ***Then*** o sistema confirma a exclusão do evento selecionado
+
+**Cenário**: Tentativa de exclusão de um evento inexistente
+   - ***Given*** que o usuário tenta excluir um evento que não existe
+   - ***Then*** o sistema exibe uma mensagem de erro
+
+Funcionalidade: Criação de cards
+
+**Cenário**: Criação de um novo card com nome válido
+  - ***Given*** que o usuário seleciona a opção de criar um novo card
+  - ***When***  o usuário fornece um nome válido para o card
+  - ***Then*** o sistema cria o card
+
+Funcionalidade: Leitura de cards
+
+ **Cenário**: Visualização da lista de cards
+   - ***Given*** que o usuário selecionou a opção de visualizar a lista de cards
+   - ***Then*** o sistema exibe uma lista de todos os cards
+
+Funcionalidade: Exclusão de cards
+
+**Cenário**: Exclusão de um card
+  - ***Given***  que o usuário seleciona a opção de excluir um card
+  - ***Then***  o sistema confirma a exclusão do card selecionado
+
+**Cenário**: Tentativa de exclusão de um card inexistente
+  - ***Given*** que o usuário tenta excluir um card que não existe
+  - ***Then***  o sistema exibe uma mensagem de erro
+
+
 Funcionalidade: Criação de lutadores
 
 **Cenário**: Criação de lutador com informações corretas:
@@ -67,96 +130,6 @@ Funcionalidade: Exclusão de lutas
  **Cenário**: Tentativa de exclusão de uma luta inexistente
    - ***Given***  que o usuário tenta excluir uma luta que não existe
    - ***Then***  o sistema exibe uma mensagem de erro
-
-Funcionalidade: Criação de eventos
-
- **Cenário**: Criação de um novo evento com informações corretas
-  - ***Given*** que o usuário seleciona a opção de criar um novo evento
-  - ***When*** o usuário fornece todas as informações corretamente
-  - ***Then*** o sistema cria o evento com os dados fornecidos
-
- **Cenário**: Tentativa de criação de um evento sem informações necessárias
-   - ***Given*** que o usuário seleciona a opção de criar um novo evento
-   - ***When*** o usuário não fornece todas as informações necessárias
-   - ***Then*** o sistema exibe uma mensagem de erro e solicita as informações novamente
-
-Funcionalidade: Leitura de eventos
-
-**Cenário**: Visualização da lista de eventos
- - ***Given*** que o usuário selecionou a opção de visualizar a lista de eventos
- - ***Then*** o sistema exibe uma lista de todos os eventos cadastrados, incluindo suas informações
-
-Funcionalidade: Atualização de eventos
-
-**Cenário**: Atualização de informações de um evento específico
- - ***Given***  que o usuário escolhe editar as informações de um evento específico
- - ***When*** o usuário atualiza as informações desejadas do evento
- - ***Then*** o sistema salva as alterações realizadas
-
-**Cenário**: Tentativa de atualização de um evento inexistente
- - ***Given*** que o usuário tenta atualizar um evento que não existe
- - ***Then*** o sistema exibe uma mensagem de erro
-
-Funcionalidade: Exclusão de eventos
-
-**Cenário**: Exclusão de um evento
-  - ***Given*** que o usuário seleciona a opção de excluir um evento
-  - ***Then*** o sistema confirma a exclusão do evento selecionado
-
-**Cenário**: Tentativa de exclusão de um evento inexistente
-   - ***Given*** que o usuário tenta excluir um evento que não existe
-   - ***Then*** o sistema exibe uma mensagem de erro
-
-Funcionalidade: Criação de cards
-
-**Cenário**: Criação de um novo card com nome válido
-  - ***Given*** que o usuário seleciona a opção de criar um novo card
-  - ***When***  o usuário fornece um nome válido para o card
-  - ***Then*** o sistema cria o card
-
-Funcionalidade: Leitura de cards
-
- **Cenário**: Visualização da lista de cards
-   - ***Given*** que o usuário selecionou a opção de visualizar a lista de cards
-   - ***Then*** o sistema exibe uma lista de todos os cards
-
-Funcionalidade: Exclusão de cards
-
-**Cenário**: Exclusão de um card
-  - ***Given***  que o usuário seleciona a opção de excluir um card
-  - ***Then***  o sistema confirma a exclusão do card selecionado
-
-**Cenário**: Tentativa de exclusão de um card inexistente
-  - ***Given*** que o usuário tenta excluir um card que não existe
-  - ***Then***  o sistema exibe uma mensagem de erro
-
-Funcionalidade: Criação de permissões
-
-**Cenário**: Criação de uma nova permissão com nome válido
-  - ***Given*** que o usuário seleciona a opção de criar uma nova permissão
-  - ***When*** o usuário fornece um nome válido para a permissão
-  - ***Then*** o sistema cria a permissão
-
-**Cenário**: Tentativa de criação de uma permissão sem nome
-  - ***Given*** que o usuário seleciona a opção de criar uma nova permissão
-  - ***When*** o usuário não fornece o nome da permissão
-  - ***Then*** o sistema exibe uma mensagem de erro e solicita o nome novamente
-
-Funcionalidade: Leitura de permissões
-
-**Cenário**: Visualização da lista de permissões
-  - ***Given***  que o usuário selecionou a opção de visualizar a lista de permissões
-  - ***Then*** o sistema exibe uma lista de todas as permissões
-
-Funcionalidade: Exclusão de permissões
-
-**Cenário**: Exclusão de uma permissão
-  - ***Given*** que o usuário seleciona a opção de excluir uma permissão
-  - ***Then*** o sistema confirma a exclusão da permissão selecionada
-
-**Cenário**: Tentativa de exclusão de uma permissão inexistente
-  - ***Given*** que o usuário tenta excluir uma permissão que não existe
-  - ***Then*** o sistema exibe uma mensagem de erro
 
 Funcionalidade: Criação de usuários
 
