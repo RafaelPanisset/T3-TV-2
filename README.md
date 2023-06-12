@@ -38,16 +38,10 @@
   - **Id do lutador 2**: o segundo lutador.
   - **Id do evento**: o evento em que essa luta ta sendo realizada.
   - **Id do card:** o card da luta.
-  - Vencedor: Quem ganhou a luta.
   - **Resultado**: o resultado da luta (vitória, derrota, empate).
   - **Método de Vitória**: o método pelo qual a luta foi decidida (nocaute, finalização, decisão).
   - **Duração**: a duração da luta, em minutos ou rounds.
 
-## Permissão
-- A entidade "Permissão" representa uma permissão para cada usuário, as permissões vão ser apenas ADM e usuário.
-- Atributos:
-  - **Id**: Id da luta.
-  - **Nome da permissão**: o nome de permissão.
 
 ## Usuário
 - A entidade "Usuário" representa um usuário do sistema, com acesso ao projeto relacionado ao MMA.
