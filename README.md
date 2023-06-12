@@ -44,7 +44,6 @@
 - Atributos:
   - **Id**: Id da luta.
   - **Nome de Usuário (Login)**: o nome de usuário para autenticação no sistema.
-  - **Id da permissão**: o id de permissão da pessoa.
   - **Senha**: a senha associada ao nome de usuário para autenticação.
   - **Nome Completo**: o nome completo do usuário.
 
