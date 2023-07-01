@@ -1,4 +1,3 @@
-// src/controller/EventoController.ts
 import { Request, Response } from 'express';
 import { EventoRepository } from '../Repositories/EventoRepository';
 import { Evento } from '../Models/Evento';
@@ -9,7 +8,7 @@ export class EventoController {
   async criarEvento(req: Request, res: Response): Promise<void> {
     try {
       const { nome, data, local } = req.body;
-      const evento: Evento = { id: Date.now(), nome, data, local };
+      const evento: Evento = { id: (await this.eventoRepository.obterEventos()).length + 1, nome, data, local };
       const novoEvento = await this.eventoRepository.criarEvento(evento);
       res.status(201).json(novoEvento);
     } catch (error) {
