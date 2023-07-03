@@ -5,7 +5,7 @@ import { InMemoryEventoRepository } from '../src/Repositories/InMemoryEventoRepo
 describe('EventoRepository', () => {
   let eventoRepository: EventoRepository;
 
-  beforeEach(() => {
+  beforeAll(() => {
     eventoRepository = new InMemoryEventoRepository();
   });
 
