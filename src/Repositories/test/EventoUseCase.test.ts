@@ -1,6 +1,6 @@
-import { Evento } from '../src/Models/Evento';
-import { EventoRepository } from '../src/Repositories/EventoRepository';
-import { InMemoryEventoRepository } from '../src/Repositories/InMemoryEventoRepository';
+import { Evento } from '../../Models/Evento';
+import { EventoRepository } from '../EventoRepository';
+import { InMemoryEventoRepository } from '../InMemoryEventoRepository';
 
 describe('EventoRepository', () => {
   let eventoRepository: EventoRepository;
