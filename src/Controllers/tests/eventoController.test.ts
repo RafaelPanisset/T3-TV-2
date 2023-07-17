@@ -1,37 +1,91 @@
-import { Request, Response } from 'express';
-import { EventoController } from '../EventoController';
 import { InMemoryEventoRepository } from '../../Repositories/InMemoryEventoRepository';
 import { Evento } from '../../Models/Evento';
 
-describe('EventoController', () => {
-  let eventoController: EventoController;
-  let eventoRepositoryMock: InMemoryEventoRepository;
+describe('InMemoryEventoRepository', () => {
+  let eventoRepository: InMemoryEventoRepository;
 
   beforeEach(() => {
-    eventoRepositoryMock = new InMemoryEventoRepository();
-    eventoController = new EventoController(eventoRepositoryMock);
+    eventoRepository = new InMemoryEventoRepository();
   });
 
   describe('criarEvento', () => {
-    it('should create a new evento and return it', async () => {
-      const req = { body: { nome: 'Test Event', data: '2023-07-17', local: 'Test Location' } } as Request;
-      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as unknown as Response;
+    it('should create a new evento', async () => {
+      const newEvento: Evento = { id: 1, nome: 'Test Event', data: new Date('2023-07-17'), local: 'Test Location' };
+      const createdEvento = await eventoRepository.criarEvento(newEvento);
 
-      // Mock the repository methods
-      const mockEventos: Evento[] = [
-        { id: 1, nome: 'Existing Event', data: new Date('2023-07-16'), local: 'Existing Location' },
-      ];
-      jest.spyOn(eventoRepositoryMock, 'obterEventos').mockResolvedValueOnce(mockEventos);
-      
-      const mockEvento: Evento = { id: 2, ...req.body };
-      jest.spyOn(eventoRepositoryMock, 'criarEvento').mockResolvedValueOnce(mockEvento);
+      expect(createdEvento).toEqual(newEvento);
+      expect(eventoRepository.obterEventos()).toContainEqual(newEvento);
+    });
+  });
 
-      await eventoController.criarEvento(req, res);
-
-      expect(res.status).toHaveBeenCalledWith(201);
-      expect(res.json).toHaveBeenCalledWith(mockEvento);
+  describe('obterEventos', () => {
+    it('should return an empty list if no eventos are present', async () => {
+      const eventos = await eventoRepository.obterEventos();
+      expect(eventos).toEqual([]);
     });
 
-    // ... Other tests ...
+    it('should return a list of eventos if eventos are present', async () => {
+      const eventosMock: Evento[] = [
+        { id: 1, nome: 'Event 1', data: new Date('2023-07-16'), local: 'Location 1' },
+        { id: 2, nome: 'Event 2', data: new Date('2023-07-17'), local: 'Location 2' },
+      ];
+      eventoRepository['eventos'] = eventosMock;
+
+      const eventos = await eventoRepository.obterEventos();
+      expect(eventos).toEqual(eventosMock);
+    });
+  });
+
+  describe('obterEventoPorId', () => {
+    it('should return null for non-existing evento', async () => {
+      const eventoId = 1;
+      const evento = await eventoRepository.obterEventoPorId(eventoId);
+      expect(evento).toBeNull();
+    });
+
+    it('should return the evento for existing eventoId', async () => {
+      const eventoId = 1;
+      const eventoMock: Evento = { id: eventoId, nome: 'Event 1', data: new Date('2023-07-16'), local: 'Location 1' };
+      eventoRepository['eventos'] = [eventoMock];
+
+      const evento = await eventoRepository.obterEventoPorId(eventoId);
+      expect(evento).toEqual(eventoMock);
+    });
+  });
+
+  describe('atualizarEvento', () => {
+    it('should update an existing evento', async () => {
+      const eventoId = 1;
+      const updatedEvento: Evento = { id: eventoId, nome: 'Updated Event', data: new Date('2023-07-18'), local: 'Updated Location' };
+      eventoRepository['eventos'] = [{ id: eventoId, nome: 'Event 1', data: new Date('2023-07-16'), local: 'Location 1' }];
+
+      const updated = await eventoRepository.atualizarEvento(updatedEvento);
+      expect(updated).toEqual(updatedEvento);
+      expect(eventoRepository['eventos']).toContainEqual(updatedEvento);
+    });
+
+    it('should throw an error for non-existing eventoId', async () => {
+      const eventoId = 1;
+      const updatedEvento: Evento = { id: eventoId, nome: 'Updated Event', data: new Date('2023-07-18'), local: 'Updated Location' };
+
+      await expect(eventoRepository.atualizarEvento(updatedEvento)).rejects.toThrowError('Evento não encontrado');
+    });
+  });
+
+  describe('excluirEvento', () => {
+    it('should delete an existing evento and return true', async () => {
+      const eventoId = 1;
+      eventoRepository['eventos'] = [{ id: eventoId, nome: 'Event 1', data: new Date('2023-07-16'), local: 'Location 1' }];
+
+      const deleted = await eventoRepository.excluirEvento(eventoId);
+      expect(deleted).toBe(true);
+      expect(eventoRepository['eventos']).toHaveLength(0);
+    });
+
+    it('should return false for non-existing eventoId', async () => {
+      const eventoId = 1;
+      const deleted = await eventoRepository.excluirEvento(eventoId);
+      expect(deleted).toBe(false);
+    });
   });
 });
