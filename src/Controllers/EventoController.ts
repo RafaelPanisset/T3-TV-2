@@ -1,15 +1,21 @@
 import { Request, Response } from 'express';
-import { EventoRepository } from '../Repositories/EventoRepository';
-import { Evento } from '../Models/Evento';
+import { Evento } from '../Entities/Evento';
+import { CriarEventoUseCase, ObterEventosUseCase, ObterEventoPorIdUseCase, AtualizarEventoUseCase, ExcluirEventoUseCase } from '../../src/usecases/EventoUseCases';
 
 export class EventoController {
-  constructor(private readonly eventoRepository: EventoRepository) {}
+  constructor(
+    private criarEventoUseCase: CriarEventoUseCase,
+    private obterEventosUseCase: ObterEventosUseCase,
+    private obterEventoPorIdUseCase: ObterEventoPorIdUseCase,
+    private atualizarEventoUseCase: AtualizarEventoUseCase,
+    private excluirEventoUseCase: ExcluirEventoUseCase,
+  ) {}
 
   async criarEvento(req: Request, res: Response): Promise<void> {
     try {
       const { nome, data, local } = req.body;
-      const evento: Evento = { id: (await this.eventoRepository.obterEventos()).length + 1, nome, data, local };
-      const novoEvento = await this.eventoRepository.criarEvento(evento);
+      const evento: Evento = { id: 0, nome, data, local };
+      const novoEvento = await this.criarEventoUseCase.execute(evento);
       res.status(201).json(novoEvento);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao criar o evento' });
@@ -18,10 +24,25 @@ export class EventoController {
 
   async obterEventos(req: Request, res: Response): Promise<void> {
     try {
-      const eventos = await this.eventoRepository.obterEventos();
+      const eventos = await this.obterEventosUseCase.execute();
       res.json(eventos);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao obter os eventos' });
+    }
+  }
+
+  async obterEventoPorId(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const eventoId = parseInt(id);
+      const evento = await this.obterEventoPorIdUseCase.execute(eventoId);
+      if (evento) {
+        res.json(evento);
+      } else {
+        res.status(404).json({ error: 'Evento não encontrado' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao obter o evento' });
     }
   }
 
@@ -30,12 +51,8 @@ export class EventoController {
       const { id } = req.params;
       const { nome, data, local } = req.body;
       const evento: Evento = { id: parseInt(id), nome, data, local };
-      const eventoAtualizado = await this.eventoRepository.atualizarEvento(evento);
-      if (eventoAtualizado) {
-        res.json(eventoAtualizado);
-      } else {
-        res.status(404).json({ error: 'Evento não encontrado' });
-      }
+      const eventoAtualizado = await this.atualizarEventoUseCase.execute(evento);
+      res.json(eventoAtualizado);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao atualizar o evento' });
     }
@@ -44,7 +61,8 @@ export class EventoController {
   async excluirEvento(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const eventoExcluido = await this.eventoRepository.excluirEvento(parseInt(id));
+      const eventoId = parseInt(id);
+      const eventoExcluido = await this.excluirEventoUseCase.execute(eventoId);
       if (eventoExcluido) {
         res.json({ message: 'Evento excluído com sucesso' });
       } else {

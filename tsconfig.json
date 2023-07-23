@@ -110,7 +110,7 @@
   },
   "include": [
     "src"
-  ],
+, "src/Routes"  ],
   "exclude": [
     "node_modules",
     "build",

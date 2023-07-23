@@ -1,16 +1,41 @@
-// src/route/eventoRoute.ts
-import express, { Router, Request, Response } from 'express';
-import { EventoController } from '../Controllers/EventoController';
-import { EventoRepository } from '../Repositories/EventoRepository';
+import express, { Request, Response } from 'express';
+import { EventoController } from '../../src/Controllers/EventoController';
+import { InMemoryEventoRepository } from '../../src/Repositories/InMemoryEventoRepository';
+import { CriarEventoUseCase, ObterEventosUseCase, ObterEventoPorIdUseCase, AtualizarEventoUseCase, ExcluirEventoUseCase } from '../../src/usecases/EventoUseCases';
 
-export function createEventoRouter(eventoRepository: EventoRepository): Router {
-  const router = express.Router();
-  const eventoController = new EventoController(eventoRepository);
- 
-  router.post('/', (req, res) => eventoController.criarEvento(req, res));
-  router.get('/', (req, res) => eventoController.obterEventos(req, res));
-  router.put('/:id', (req, res) => eventoController.atualizarEvento(req, res));
-  router.delete('/:id', (req, res) => eventoController.excluirEvento(req, res));
+const eventoRoutes = express.Router();
+const eventoRepository = new InMemoryEventoRepository();
+const eventoController = new EventoController(
+  new CriarEventoUseCase(eventoRepository),
+  new ObterEventosUseCase(eventoRepository),
+  new ObterEventoPorIdUseCase(eventoRepository),
+  new AtualizarEventoUseCase(eventoRepository),
+  new ExcluirEventoUseCase(eventoRepository)
+);
 
-  return router;
-}
+// Rota para criar um novo evento
+eventoRoutes.post('/eventos', async (req: Request, res: Response) => {
+  await eventoController.criarEvento(req, res);
+});
+
+// Rota para obter todos os eventos
+eventoRoutes.get('/eventos', async (req: Request, res: Response) => {
+  await eventoController.obterEventos(req, res);
+});
+
+// Rota para obter um evento pelo ID
+eventoRoutes.get('/eventos/:id', async (req: Request, res: Response) => {
+  await eventoController.obterEventoPorId(req, res);
+});
+
+// Rota para atualizar um evento pelo ID
+eventoRoutes.put('/eventos/:id', async (req: Request, res: Response) => {
+  await eventoController.atualizarEvento(req, res);
+});
+
+// Rota para excluir um evento pelo ID
+eventoRoutes.delete('/eventos/:id', async (req: Request, res: Response) => {
+  await eventoController.excluirEvento(req, res);
+});
+
+export default eventoRoutes;

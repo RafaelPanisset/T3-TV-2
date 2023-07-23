@@ -1,18 +1,26 @@
-// src/index.ts
-import express from 'express';
-import { createEventoRouter } from './Routes/eventoRoute';
-import { EventoRepository } from './Repositories/EventoRepository';
-import { InMemoryEventoRepository } from './Repositories/InMemoryEventoRepository';
+import express, { Express } from 'express';
+import eventoRoutes from '../src/Routes/eventoRoute';
 
-const app = express();
-const PORT = 3000;
+import cardRouter from '../src/Routes/CardRoutes';
 
-const eventoRepository: EventoRepository = new InMemoryEventoRepository(); // Instantiate the repository
+import lutaRoutes from '../src/Routes/lutaRoutes';
+import lutadorRoutes from '../src/Routes/lutadorRoutes';
+import usuarioRoutes from '../src/Routes/usuarioRoutes';
 
+const app: Express = express();
+const port = 3000; // You can change this to the desired port number
+
+// Middleware to parse incoming JSON data
 app.use(express.json());
 
-app.use('/eventos', createEventoRouter(eventoRepository)); // Pass the instantiated repository to createEventoRouter
+// Mount the event routes
+app.use(eventoRoutes);
+app.use(cardRouter);
+app.use(lutaRoutes);
+app.use(lutadorRoutes);
+app.use(usuarioRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
