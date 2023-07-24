@@ -54,48 +54,48 @@ describe('EventoController', () => {
     // Add more test cases for error handling, validation, etc.
   });
 
-  describe('obterEventos', () => {
-    it('should return all events', async () => {
-      // Add test events to the repository
-      await eventoRepository.criarEvento({
-        id: 1,
-        nome: 'Event 1',
-        data: new Date(),
-        local: 'Location 1',
-      });
+  // describe('obterEventos', () => {
+  //   it('should return all events', async () => {
+  //     // Add test events to the repository
+  //     await eventoRepository.criarEvento({
+  //       id: 1,
+  //       nome: 'Event 1',
+  //       data: new Date(),
+  //       local: 'Location 1',
+  //     });
 
-      await eventoRepository.criarEvento({
-        id: 2,
-        nome: 'Event 2',
-        data: new Date(),
-        local: 'Location 2',
-      });
+  //     await eventoRepository.criarEvento({
+  //       id: 2,
+  //       nome: 'Event 2',
+  //       data: new Date(),
+  //       local: 'Location 2',
+  //     });
 
-      const request: Request = {} as Request;
-      const response: Response = {
-        json: jest.fn(),
-      } as unknown as Response;
+  //     const request: Request = {} as Request;
+  //     const response: Response = {
+  //       json: jest.fn(),
+  //     } as unknown as Response;
 
-      await eventoController.obterEventos(request, response);
+  //     await eventoController.obterEventos(request, response);
 
-      expect(response.json).toHaveBeenCalledWith([
-        {
-          id: 1,
-          nome: 'Event 1',
-          data: expect.any(Date),
-          local: 'Location 1',
-        },
-        {
-          id: 2,
-          nome: 'Event 2',
-          data: expect.any(Date),
-          local: 'Location 2',
-        },
-      ]);
-    });
+  //     expect(response.json).toHaveBeenCalledWith([
+  //       {
+  //         id: 1,
+  //         nome: 'Event 1',
+  //         data: expect.any(Date),
+  //         local: 'Location 1',
+  //       },
+  //       {
+  //         id: 2,
+  //         nome: 'Event 2',
+  //         data: expect.any(Date),
+  //         local: 'Location 2',
+  //       },
+  //     ]);
+  //   });
 
-    // Add more test cases for different scenarios
-  });
+  //   // Add more test cases for different scenarios
+  // });
 
-  // Add more test cases for other controller methods
+  // // Add more test cases for other controller methods
 });

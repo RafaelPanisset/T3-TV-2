@@ -14,11 +14,11 @@ const port = 3000; // You can change this to the desired port number
 app.use(express.json());
 
 // Mount the event routes
-app.use(eventoRoutes);
-app.use(cardRouter);
-app.use(lutaRoutes);
-app.use(lutadorRoutes);
-app.use(usuarioRoutes);
+// app.use(eventoRoutes);
+// app.use(cardRouter);
+// app.use(lutaRoutes);
+// app.use(lutadorRoutes);
+// app.use(usuarioRoutes);
 
 // Start the server
 app.listen(port, () => {
