@@ -14,15 +14,14 @@ describe('LutadorController', () => {
 
     lutadorController = new LutadorController(
       lutadorUseCases,
-      // ... (rest of the use cases)
     );
   });
 
   describe('criarLutador', () => {
-    it('should create a new lutador', async () => {
+    it('deve criar um novo lutador', async () => {
       const request: Request = {
         body: {
-          nome: 'Test Lutador',
+          nome: 'Teste Lutador',
           categoriaPeso: 'Peso Médio',
           paisOrigem: 'Brasil',
           idade: 30,
@@ -41,18 +40,17 @@ describe('LutadorController', () => {
       expect(response.status).toHaveBeenCalledWith(201);
       expect(response.json).toHaveBeenCalled();
 
-      // Check if the lutador was added to the repository
+      // Verifique se o lutador foi adicionado ao repositório
       const lutadores = await lutadorRepository.obterLutadores();
       expect(lutadores.length).toBe(1);
-      expect(lutadores[0].nome).toBe('Test Lutador');
+      expect(lutadores[0].nome).toBe('Teste Lutador');
     });
 
-    // Add more test cases for error handling, validation, etc.
   });
 
   describe('obterLutadores', () => {
-    it('should return all lutadores', async () => {
-      // Add test lutadores to the repository
+    it('deve retornar todos os lutadores', async () => {
+      // Adicione lutadores de teste ao repositório
       await lutadorRepository.criarLutador({
         id: 1,
         nome: 'Lutador 1',
@@ -102,8 +100,6 @@ describe('LutadorController', () => {
       ]);
     });
 
-    // Add more test cases for different scenarios
   });
 
-  // Add more test cases for other controller methods
 });

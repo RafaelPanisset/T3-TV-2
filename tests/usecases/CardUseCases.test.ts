@@ -13,17 +13,17 @@ describe('CardUseCases', () => {
   });
 
   describe('criarCard', () => {
-    it('should create a new card', async () => {
+    it('deve criar um novo card', async () => {
       const card: Card = {
         id: 1,
-        nome: 'Test Card',
+        nome: 'Teste Card',
       };
 
       const cardCriado = await cardUseCases.criarCard(card);
 
       expect(cardCriado).toEqual(card);
 
-      // Check if the card was added to the repository
+      // Verifica se o card foi adicionado ao repositório
       const cards = await cardRepository.obterCards();
       expect(cards.length).toBe(1);
       expect(cards[0]).toEqual(card);
@@ -31,10 +31,10 @@ describe('CardUseCases', () => {
   });
 
   describe('obterCards', () => {
-    it('should return all cards', async () => {
+    it('deve retornar todos os cards', async () => {
       const card1: Card = {
         id: 1,
-        nome: 'Card 1'
+        nome: 'Card 1',
       };
 
       const card2: Card = {
@@ -52,10 +52,10 @@ describe('CardUseCases', () => {
   });
 
   describe('obterCardPorId', () => {
-    it('should return the card with the provided ID', async () => {
+    it('deve retornar o card com o ID fornecido', async () => {
       const card: Card = {
         id: 1,
-        nome: 'Test Card'
+        nome: 'Teste Card',
       };
 
       await cardRepository.criarCard(card);
@@ -65,7 +65,7 @@ describe('CardUseCases', () => {
       expect(cardObtido).toEqual(card);
     });
 
-    it('should return null if the card with the provided ID does not exist', async () => {
+    it('deve retornar null se o card com o ID fornecido não existir', async () => {
       const cardObtido = await cardUseCases.obterCardPorId(1);
 
       expect(cardObtido).toBeNull();
@@ -73,17 +73,17 @@ describe('CardUseCases', () => {
   });
 
   describe('atualizarCard', () => {
-    it('should update the card with the provided ID', async () => {
+    it('deve atualizar o card com o ID fornecido', async () => {
       const card: Card = {
         id: 1,
-        nome: 'Test Card',
+        nome: 'Teste Card',
       };
 
       await cardRepository.criarCard(card);
 
       const cardAtualizado: Card = {
         id: 1,
-        nome: 'Updated Card',
+        nome: 'Card Atualizado',
       };
 
       const cardAtualizadoObtido = await cardUseCases.atualizarCard(cardAtualizado);
@@ -94,21 +94,21 @@ describe('CardUseCases', () => {
       expect(cards[0]).toEqual(cardAtualizado);
     });
 
-    it('should throw an error if the card with the provided ID does not exist', async () => {
+    it('deve lançar um erro se o card com o ID fornecido não existir', async () => {
       const card: Card = {
         id: 1,
-        nome: 'Test Card',
+        nome: 'Teste Card',
       };
 
-      await expect(cardUseCases.atualizarCard(card)).rejects.toThrow('Card not found');
+      await expect(cardUseCases.atualizarCard(card)).rejects.toThrow('Card não encontrado');
     });
   });
 
   describe('excluirCard', () => {
-    it('should delete the card with the provided ID', async () => {
+    it('deve excluir o card com o ID fornecido', async () => {
       const card: Card = {
         id: 1,
-        nome: 'Test Card',
+        nome: 'Teste Card',
       };
 
       await cardRepository.criarCard(card);
@@ -121,7 +121,7 @@ describe('CardUseCases', () => {
       expect(cards.length).toBe(0);
     });
 
-    it('should return false if the card with the provided ID does not exist', async () => {
+    it('deve retornar false se o card com o ID fornecido não existir', async () => {
       const cardExcluido = await cardUseCases.excluirCard(1);
 
       expect(cardExcluido).toBe(false);

@@ -1,33 +1,26 @@
 import { Request, Response } from 'express';
-import { LutadorController } from '../../src/Controllers/LutadorController';
-import { LutadorUseCases } from '../../src/usecases/LutadorUseCases';
-import { InMemoryLutadorRepository } from '../../src/Repositories/InMemoryLutadorRepository';
-import { Lutador } from '../../src/Entities/Lutador';
+import { UsuarioController } from '../../src/Controllers/UsuarioController';
+import { UsuarioUseCases } from '../../src/usecases/UsuarioUseCases';
+import { InMemoryUsuarioRepository } from '../../src/Repositories/InMemoryUsuarioRepository';
+import { Usuario } from '../../src/Entities/Usuario';
 
-describe('LutadorController', () => {
-  let lutadorController: LutadorController;
-  let lutadorRepository: InMemoryLutadorRepository;
+// Testes para UsuarioController
+describe('UsuarioController', () => {
+  let usuarioController: UsuarioController;
+  let usuarioRepository: InMemoryUsuarioRepository;
 
   beforeEach(() => {
-    lutadorRepository = new InMemoryLutadorRepository();
-    const lutadorUseCases = new LutadorUseCases(lutadorRepository);
-
-    lutadorController = new LutadorController(
-      lutadorUseCases,
-      // ... (rest of the use cases)
-    );
+    usuarioRepository = new InMemoryUsuarioRepository();
+    usuarioController = new UsuarioController(usuarioRepository);
   });
 
-  describe('criarLutador', () => {
-    it('should create a new lutador', async () => {
+  describe('criarUsuario', () => {
+    it('deve criar um novo usuário', async () => {
       const request: Request = {
         body: {
-          nome: 'Test Lutador',
-          categoriaPeso: 'Peso Médio',
-          paisOrigem: 'Brasil',
-          idade: 30,
-          altura: 1.8,
-          alcance: 1.9,
+          nomeUsuario: 'usuario1',
+          senha: 'senha123',
+          nomeCompleto: 'Usuário Um',
         },
       } as Request;
 
@@ -36,41 +29,34 @@ describe('LutadorController', () => {
         json: jest.fn(),
       } as unknown as Response;
 
-      await lutadorController.criarLutador(request, response);
+      await usuarioController.criarUsuario(request, response);
 
       expect(response.status).toHaveBeenCalledWith(201);
       expect(response.json).toHaveBeenCalled();
 
-      // Check if the lutador was added to the repository
-      const lutadores = await lutadorRepository.obterLutadores();
-      expect(lutadores.length).toBe(1);
-      expect(lutadores[0].nome).toBe('Test Lutador');
+      const usuarios = await usuarioRepository.obterUsuarios();
+      expect(usuarios.length).toBe(1);
+      expect(usuarios[0].nomeUsuario).toBe('usuario1');
     });
 
-    // Add more test cases for error handling, validation, etc.
+    // Adicione mais casos de teste para tratamento de erros, validações, etc.
   });
 
-  describe('obterLutadores', () => {
-    it('should return all lutadores', async () => {
-      // Add test lutadores to the repository
-      await lutadorRepository.criarLutador({
+  describe('obterUsuarios', () => {
+    it('deve retornar todos os usuários', async () => {
+      // Adicione usuários de teste ao repositório
+      await usuarioRepository.criarUsuario({
         id: 1,
-        nome: 'Lutador 1',
-        categoriaPeso: 'Peso Leve',
-        paisOrigem: 'Brasil',
-        idade: 25,
-        altura: 1.75,
-        alcance: 1.8,
+        nomeUsuario: 'usuario1',
+        senha: 'senha123',
+        nomeCompleto: 'Usuário Um',
       });
 
-      await lutadorRepository.criarLutador({
+      await usuarioRepository.criarUsuario({
         id: 2,
-        nome: 'Lutador 2',
-        categoriaPeso: 'Peso Pesado',
-        paisOrigem: 'Estados Unidos',
-        idade: 28,
-        altura: 1.85,
-        alcance: 2.0,
+        nomeUsuario: 'usuario2',
+        senha: 'test123',
+        nomeCompleto: 'Usuário Dois',
       });
 
       const request: Request = {} as Request;
@@ -78,32 +64,24 @@ describe('LutadorController', () => {
         json: jest.fn(),
       } as unknown as Response;
 
-      await lutadorController.obterLutadores(request, response);
+      await usuarioController.obterUsuarios(request, response);
 
       expect(response.json).toHaveBeenCalledWith([
         {
           id: 1,
-          nome: 'Lutador 1',
-          categoriaPeso: 'Peso Leve',
-          paisOrigem: 'Brasil',
-          idade: 25,
-          altura: 1.75,
-          alcance: 1.8,
+          nomeUsuario: 'usuario1',
+          senha: 'senha123',
+          nomeCompleto: 'Usuário Um',
         },
         {
           id: 2,
-          nome: 'Lutador 2',
-          categoriaPeso: 'Peso Pesado',
-          paisOrigem: 'Estados Unidos',
-          idade: 28,
-          altura: 1.85,
-          alcance: 2.0,
+          nomeUsuario: 'usuario2',
+          senha: 'test123',
+          nomeCompleto: 'Usuário Dois',
         },
       ]);
     });
 
-    // Add more test cases for different scenarios
   });
 
-  // Add more test cases for other controller methods
 });

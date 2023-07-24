@@ -16,10 +16,10 @@ describe('CardController', () => {
   });
 
   describe('criarCard', () => {
-    it('should create a new card', async () => {
+    it('deve criar um novo card', async () => {
       const request: Request = {
         body: {
-          nome: 'Test Card',
+          nome: 'Teste Card',
         },
       } as Request;
 
@@ -33,18 +33,15 @@ describe('CardController', () => {
       expect(response.status).toHaveBeenCalledWith(201);
       expect(response.json).toHaveBeenCalled();
 
-      // Check if the card was added to the repository
       const cards = await cardRepository.obterCards();
       expect(cards.length).toBe(1);
-      expect(cards[0].nome).toBe('Test Card');
+      expect(cards[0].nome).toBe('Teste Card');
     });
-
-    // Add more test cases for error handling, validation, etc.
   });
 
   describe('obterCards', () => {
-    it('should return all cards', async () => {
-      // Add test cards to the repository
+    it('deve retornar todos os cards', async () => {
+      // Adicionar cards de teste ao repositório
       await cardRepository.criarCard({
         id: 1,
         nome: 'Card 1',
@@ -73,9 +70,5 @@ describe('CardController', () => {
         },
       ]);
     });
-
-    // Add more test cases for different scenarios
   });
-
-  // Add more test cases for other controller methods
 });
