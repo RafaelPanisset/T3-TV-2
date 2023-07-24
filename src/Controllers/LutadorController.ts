@@ -42,7 +42,7 @@ export class LutadorController {
     }
   }
 
-  async obterLutadorPorid(req: Request, res: Response): Promise<void> {
+  async obterLutadorPorId(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
       const lutadorid = parseInt(id);

@@ -26,7 +26,7 @@ export class CardController {
     }
   }
 
-  async obterCardPorid(req: Request, res: Response): Promise<void> {
+  async obterCardPorId(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
       const cardid = parseInt(id);

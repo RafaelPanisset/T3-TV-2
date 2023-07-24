@@ -26,7 +26,7 @@ export class UsuarioController {
     }
   }
 
-  async obterUsuarioPorid(req: Request, res: Response): Promise<void> {
+  async obterUsuarioPorId(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
       const usuarioid = parseInt(id);

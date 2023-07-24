@@ -32,7 +32,7 @@ export class LutaController {
     }
   }
 
-  async obterLutaPorid(req: Request, res: Response): Promise<void> {
+  async obterLutaPorId(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
       const lutaid = parseInt(id);
