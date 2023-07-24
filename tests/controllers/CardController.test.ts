@@ -12,10 +12,7 @@ describe('CardController', () => {
     cardRepository = new InMemoryCardRepository();
     const cardUseCases = new CardUseCases(cardRepository);
 
-    cardController = new CardController(
-      cardUseCases,
-      // ... (rest of the use cases)
-    );
+    cardController = new CardController(cardUseCases);
   });
 
   describe('criarCard', () => {
@@ -23,8 +20,6 @@ describe('CardController', () => {
       const request: Request = {
         body: {
           nome: 'Test Card',
-          data: new Date(),
-          local: 'Test Location',
         },
       } as Request;
 
@@ -53,15 +48,11 @@ describe('CardController', () => {
       await cardRepository.criarCard({
         id: 1,
         nome: 'Card 1',
-        data: new Date(),
-        local: 'Location 1',
       });
 
       await cardRepository.criarCard({
         id: 2,
         nome: 'Card 2',
-        data: new Date(),
-        local: 'Location 2',
       });
 
       const request: Request = {} as Request;
@@ -75,14 +66,10 @@ describe('CardController', () => {
         {
           id: 1,
           nome: 'Card 1',
-          data: expect.any(Date),
-          local: 'Location 1',
         },
         {
           id: 2,
           nome: 'Card 2',
-          data: expect.any(Date),
-          local: 'Location 2',
         },
       ]);
     });

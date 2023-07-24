@@ -8,8 +8,8 @@ export class CardController {
 
   async criarCard(req: Request, res: Response): Promise<void> {
     try {
-      const { Id, Nome } = req.body;
-      const card: Card = { Id, Nome };
+      const { id, nome } = req.body;
+      const card: Card = { id, nome };
       const novoCard = await this.cardUseCases.criarCard(card);
       res.status(201).json(novoCard);
     } catch (error) {
@@ -26,11 +26,11 @@ export class CardController {
     }
   }
 
-  async obterCardPorId(req: Request, res: Response): Promise<void> {
+  async obterCardPorid(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const cardId = parseInt(id);
-      const card = await this.cardUseCases.obterCardPorId(cardId);
+      const cardid = parseInt(id);
+      const card = await this.cardUseCases.obterCardPorId(cardid);
       if (card) {
         res.json(card);
       } else {
@@ -44,9 +44,9 @@ export class CardController {
   async atualizarCard(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const cardId = parseInt(id);
-      const { Nome } = req.body;
-      const card: Card = { Id: cardId, Nome };
+      const cardid = parseInt(id);
+      const { nome } = req.body;
+      const card: Card = { id: cardid, nome };
       const cardAtualizado = await this.cardUseCases.atualizarCard(card);
       if (cardAtualizado) {
         res.json(cardAtualizado);
@@ -61,8 +61,8 @@ export class CardController {
   async excluirCard(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const cardId = parseInt(id);
-      const cardExcluido = await this.cardUseCases.excluirCard(cardId);
+      const cardid = parseInt(id);
+      const cardExcluido = await this.cardUseCases.excluirCard(cardid);
       if (cardExcluido) {
         res.json({ message: 'Card excluído com sucesso' });
       } else {

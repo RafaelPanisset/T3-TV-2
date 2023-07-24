@@ -13,8 +13,6 @@ describe('InMemoryCardRepository', () => {
       const card: Card = {
         id: 1,
         nome: 'Card de Teste',
-        data: new Date(),
-        local: 'Local de Teste',
       };
 
       const cardCriado = await cardRepository.criarCard(card);
@@ -28,15 +26,11 @@ describe('InMemoryCardRepository', () => {
       const card1: Card = {
         id: 1,
         nome: 'Card 1',
-        data: new Date(),
-        local: 'Local 1',
       };
 
       const card2: Card = {
         id: 2,
         nome: 'Card 2',
-        data: new Date(),
-        local: 'Local 2',
       };
 
       await cardRepository.criarCard(card1);
@@ -53,8 +47,6 @@ describe('InMemoryCardRepository', () => {
       const card: Card = {
         id: 1,
         nome: 'Card de Teste',
-        data: new Date(),
-        local: 'Local de Teste',
       };
 
       await cardRepository.criarCard(card);
@@ -76,8 +68,6 @@ describe('InMemoryCardRepository', () => {
       const card: Card = {
         id: 1,
         nome: 'Card de Teste',
-        data: new Date(),
-        local: 'Local de Teste',
       };
 
       await cardRepository.criarCard(card);
@@ -85,8 +75,6 @@ describe('InMemoryCardRepository', () => {
       const cardAtualizado: Card = {
         id: 1,
         nome: 'Card Atualizado',
-        data: new Date(),
-        local: 'Local Atualizado',
       };
 
       const cardAtualizadoObtido = await cardRepository.atualizarCard(cardAtualizado);
@@ -101,8 +89,6 @@ describe('InMemoryCardRepository', () => {
       const card: Card = {
         id: 1,
         nome: 'Card de Teste',
-        data: new Date(),
-        local: 'Local de Teste',
       };
 
       await expect(cardRepository.atualizarCard(card)).rejects.toThrow('Card não encontrado');
@@ -114,8 +100,6 @@ describe('InMemoryCardRepository', () => {
       const card: Card = {
         id: 1,
         nome: 'Card de Teste',
-        data: new Date(),
-        local: 'Local de Teste',
       };
 
       await cardRepository.criarCard(card);

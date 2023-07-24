@@ -1,9 +1,9 @@
 // Luta.ts
 export interface Luta {
-    Id: number;
-    IdLutador1: number;
-    IdLutador2: number;
-    IdEvento: number;
-    IdCard: number;
+    id: number;
+    idLutador1: number;
+    idLutador2: number;
+    idEvento: number;
+    idCard: number;
   }
   

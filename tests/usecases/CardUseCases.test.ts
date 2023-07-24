@@ -17,8 +17,6 @@ describe('CardUseCases', () => {
       const card: Card = {
         id: 1,
         nome: 'Test Card',
-        data: new Date(),
-        local: 'Test Location',
       };
 
       const cardCriado = await cardUseCases.criarCard(card);
@@ -36,16 +34,12 @@ describe('CardUseCases', () => {
     it('should return all cards', async () => {
       const card1: Card = {
         id: 1,
-        nome: 'Card 1',
-        data: new Date(),
-        local: 'Location 1',
+        nome: 'Card 1'
       };
 
       const card2: Card = {
         id: 2,
         nome: 'Card 2',
-        data: new Date(),
-        local: 'Location 2',
       };
 
       await cardRepository.criarCard(card1);
@@ -61,9 +55,7 @@ describe('CardUseCases', () => {
     it('should return the card with the provided ID', async () => {
       const card: Card = {
         id: 1,
-        nome: 'Test Card',
-        data: new Date(),
-        local: 'Test Location',
+        nome: 'Test Card'
       };
 
       await cardRepository.criarCard(card);
@@ -85,8 +77,6 @@ describe('CardUseCases', () => {
       const card: Card = {
         id: 1,
         nome: 'Test Card',
-        data: new Date(),
-        local: 'Test Location',
       };
 
       await cardRepository.criarCard(card);
@@ -94,8 +84,6 @@ describe('CardUseCases', () => {
       const cardAtualizado: Card = {
         id: 1,
         nome: 'Updated Card',
-        data: new Date(),
-        local: 'Updated Location',
       };
 
       const cardAtualizadoObtido = await cardUseCases.atualizarCard(cardAtualizado);
@@ -110,8 +98,6 @@ describe('CardUseCases', () => {
       const card: Card = {
         id: 1,
         nome: 'Test Card',
-        data: new Date(),
-        local: 'Test Location',
       };
 
       await expect(cardUseCases.atualizarCard(card)).rejects.toThrow('Card not found');
@@ -123,8 +109,6 @@ describe('CardUseCases', () => {
       const card: Card = {
         id: 1,
         nome: 'Test Card',
-        data: new Date(),
-        local: 'Test Location',
       };
 
       await cardRepository.criarCard(card);

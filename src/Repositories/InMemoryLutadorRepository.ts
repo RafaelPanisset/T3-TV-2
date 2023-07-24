@@ -15,12 +15,12 @@ export class InMemoryLutadorRepository implements LutadorRepository {
   }
 
   async obterLutadorPorId(id: number): Promise<Lutador | null> {
-    const lutador = this.lutadores.find(l => l.Id === id);
+    const lutador = this.lutadores.find(l => l.id === id);
     return lutador || null;
   }
 
   async atualizarLutador(lutador: Lutador): Promise<Lutador> {
-    const index = this.lutadores.findIndex(l => l.Id === lutador.Id);
+    const index = this.lutadores.findIndex(l => l.id === lutador.id);
     if (index !== -1) {
       this.lutadores[index] = lutador;
       return lutador;
@@ -29,7 +29,7 @@ export class InMemoryLutadorRepository implements LutadorRepository {
   }
 
   async excluirLutador(id: number): Promise<boolean> {
-    const index = this.lutadores.findIndex(l => l.Id === id);
+    const index = this.lutadores.findIndex(l => l.id === id);
     if (index !== -1) {
       this.lutadores.splice(index, 1);
       return true;

@@ -8,13 +8,13 @@ export class LutaController {
 
   async criarLuta(req: Request, res: Response): Promise<void> {
     try {
-      const { IdLutador1, IdLutador2, IdEvento, IdCard } = req.body;
+      const { idLutador1, idLutador2, idEvento, idCard } = req.body;
       const luta: Luta = {
-        Id: (await this.lutaUseCases.obterLutas()).length + 1,
-        IdLutador1,
-        IdLutador2,
-        IdEvento,
-        IdCard,
+        id: (await this.lutaUseCases.obterLutas()).length + 1,
+        idLutador1,
+        idLutador2,
+        idEvento,
+        idCard,
       };
       const novaLuta = await this.lutaUseCases.criarLuta(luta);
       res.status(201).json(novaLuta);
@@ -32,11 +32,11 @@ export class LutaController {
     }
   }
 
-  async obterLutaPorId(req: Request, res: Response): Promise<void> {
+  async obterLutaPorid(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const lutaId = parseInt(id);
-      const luta = await this.lutaUseCases.obterLutaPorId(lutaId);
+      const lutaid = parseInt(id);
+      const luta = await this.lutaUseCases.obterLutaPorId(lutaid);
       if (luta) {
         res.json(luta);
       } else {
@@ -50,14 +50,14 @@ export class LutaController {
   async atualizarLuta(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const { IdLutador1, IdLutador2, IdEvento, IdCard } = req.body;
-      const lutaId = parseInt(id);
+      const { idLutador1, idLutador2, idEvento, idCard } = req.body;
+      const lutaid = parseInt(id);
       const luta: Luta = {
-        Id: lutaId,
-        IdLutador1,
-        IdLutador2,
-        IdEvento,
-        IdCard,
+        id: lutaid,
+        idLutador1,
+        idLutador2,
+        idEvento,
+        idCard,
       };
       const lutaAtualizada = await this.lutaUseCases.atualizarLuta(luta);
       if (lutaAtualizada) {
@@ -73,8 +73,8 @@ export class LutaController {
   async excluirLuta(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const lutaId = parseInt(id);
-      const lutaExcluida = await this.lutaUseCases.excluirLuta(lutaId);
+      const lutaid = parseInt(id);
+      const lutaExcluida = await this.lutaUseCases.excluirLuta(lutaid);
       if (lutaExcluida) {
         res.json({ message: 'Luta excluída com sucesso' });
       } else {

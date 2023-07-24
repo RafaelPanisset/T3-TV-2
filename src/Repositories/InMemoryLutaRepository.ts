@@ -15,12 +15,12 @@ export class InMemoryLutaRepository implements LutaRepository {
   }
 
   async obterLutaPorId(id: number): Promise<Luta | null> {
-    const luta = this.lutas.find(l => l.Id === id);
+    const luta = this.lutas.find(l => l.id === id);
     return luta || null;
   }
 
   async atualizarLuta(luta: Luta): Promise<Luta> {
-    const index = this.lutas.findIndex(l => l.Id === luta.Id);
+    const index = this.lutas.findIndex(l => l.id === luta.id);
     if (index !== -1) {
       this.lutas[index] = luta;
       return luta;
@@ -29,7 +29,7 @@ export class InMemoryLutaRepository implements LutaRepository {
   }
 
   async excluirLuta(id: number): Promise<boolean> {
-    const index = this.lutas.findIndex(l => l.Id === id);
+    const index = this.lutas.findIndex(l => l.id === id);
     if (index !== -1) {
       this.lutas.splice(index, 1);
       return true;

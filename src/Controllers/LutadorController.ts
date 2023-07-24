@@ -9,20 +9,22 @@ export class LutadorController {
   async criarLutador(req: Request, res: Response): Promise<void> {
     try {
       const {
-        Nome,
-        CategoriaPeso,
-        PaisOrigem,
-        Idade,
-        Altura,
-        Alcance,
+        id,
+        nome,
+        categoriaPeso,
+        paisOrigem,
+        idade,
+        altura,
+        alcance,
       } = req.body;
       const lutador: Lutador = {
-        Nome,
-        CategoriaPeso,
-        PaisOrigem,
-        Idade,
-        Altura,
-        Alcance,
+        id,
+        nome,
+        categoriaPeso,
+        paisOrigem,
+        idade,
+        altura,
+        alcance,
       };
       const novoLutador = await this.lutadorUseCases.criarLutador(lutador);
       res.status(201).json(novoLutador);
@@ -40,11 +42,11 @@ export class LutadorController {
     }
   }
 
-  async obterLutadorPorId(req: Request, res: Response): Promise<void> {
+  async obterLutadorPorid(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const lutadorId = parseInt(id);
-      const lutador = await this.lutadorUseCases.obterLutadorPorId(lutadorId);
+      const lutadorid = parseInt(id);
+      const lutador = await this.lutadorUseCases.obterLutadorPorId(lutadorid);
       if (lutador) {
         res.json(lutador);
       } else {
@@ -59,21 +61,22 @@ export class LutadorController {
     try {
       const { id } = req.params;
       const {
-        Nome,
-        CategoriaPeso,
-        PaisOrigem,
-        Idade,
-        Altura,
-        Alcance,
+        nome,
+        categoriaPeso,
+        paisOrigem,
+        idade,
+        altura,
+        alcance,
       } = req.body;
-      const lutadorId = parseInt(id);
+      const lutadorid = parseInt(id);
       const lutador: Lutador = {
-        Nome,
-        CategoriaPeso,
-        PaisOrigem,
-        Idade,
-        Altura,
-        Alcance,
+        id: lutadorid, // Include the 'id' property with the correct value
+        nome,
+        categoriaPeso,
+        paisOrigem,
+        idade,
+        altura,
+        alcance,
       };
       const lutadorAtualizado = await this.lutadorUseCases.atualizarLutador(
         lutador
@@ -87,13 +90,14 @@ export class LutadorController {
       res.status(500).json({ error: 'Erro ao atualizar o lutador' });
     }
   }
+  
 
   async excluirLutador(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const lutadorId = parseInt(id);
+      const lutadorid = parseInt(id);
       const lutadorExcluido = await this.lutadorUseCases.excluirLutador(
-        lutadorId
+        lutadorid
       );
       if (lutadorExcluido) {
         res.json({ message: 'Lutador excluído com sucesso' });

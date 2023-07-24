@@ -9,7 +9,7 @@ export class UsuarioController {
   async criarUsuario(req: Request, res: Response): Promise<void> {
     try {
       const { nomeUsuario, senha, nomeCompleto } = req.body;
-      const usuario: Usuario = { Id: (await this.usuarioRepository.obterUsuarios()).length + 1, nomeUsuario, senha, nomeCompleto };
+      const usuario: Usuario = { id: (await this.usuarioRepository.obterUsuarios()).length + 1, nomeUsuario, senha, nomeCompleto };
       const novoUsuario = await this.usuarioRepository.criarUsuario(usuario);
       res.status(201).json(novoUsuario);
     } catch (error) {
@@ -26,11 +26,11 @@ export class UsuarioController {
     }
   }
 
-  async obterUsuarioPorId(req: Request, res: Response): Promise<void> {
+  async obterUsuarioPorid(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const usuarioId = parseInt(id);
-      const usuario = await this.usuarioRepository.obterUsuarioPorId(usuarioId);
+      const usuarioid = parseInt(id);
+      const usuario = await this.usuarioRepository.obterUsuarioPorId(usuarioid);
       if (usuario) {
         res.json(usuario);
       } else {
@@ -45,8 +45,8 @@ export class UsuarioController {
     try {
       const { id } = req.params;
       const { nomeUsuario, senha, nomeCompleto } = req.body;
-      const usuarioId = parseInt(id);
-      const usuario: Usuario = { Id: usuarioId, nomeUsuario, senha, nomeCompleto };
+      const usuarioid = parseInt(id);
+      const usuario: Usuario = { id: usuarioid, nomeUsuario, senha, nomeCompleto };
       const usuarioAtualizado = await this.usuarioRepository.atualizarUsuario(usuario);
       if (usuarioAtualizado) {
         res.json(usuarioAtualizado);
@@ -61,8 +61,8 @@ export class UsuarioController {
   async excluirUsuario(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const usuarioId = parseInt(id);
-      const usuarioExcluido = await this.usuarioRepository.excluirUsuario(usuarioId);
+      const usuarioid = parseInt(id);
+      const usuarioExcluido = await this.usuarioRepository.excluirUsuario(usuarioid);
       if (usuarioExcluido) {
         res.json({ message: 'Usuário excluído com sucesso' });
       } else {

@@ -15,12 +15,12 @@ export class InMemoryUsuarioRepository implements UsuarioRepository {
   }
 
   async obterUsuarioPorId(id: number): Promise<Usuario | null> {
-    const usuario = this.usuarios.find(u => u.Id === id);
+    const usuario = this.usuarios.find(u => u.id === id);
     return usuario || null;
   }
 
   async atualizarUsuario(usuario: Usuario): Promise<Usuario> {
-    const index = this.usuarios.findIndex(u => u.Id === usuario.Id);
+    const index = this.usuarios.findIndex(u => u.id === usuario.id);
     if (index !== -1) {
       this.usuarios[index] = usuario;
       return usuario;
@@ -29,7 +29,7 @@ export class InMemoryUsuarioRepository implements UsuarioRepository {
   }
 
   async excluirUsuario(id: number): Promise<boolean> {
-    const index = this.usuarios.findIndex(u => u.Id === id);
+    const index = this.usuarios.findIndex(u => u.id === id);
     if (index !== -1) {
       this.usuarios.splice(index, 1);
       return true;

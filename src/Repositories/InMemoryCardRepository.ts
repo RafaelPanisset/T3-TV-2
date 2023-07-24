@@ -15,12 +15,12 @@ export class InMemoryCardRepository implements CardRepository {
   }
 
   async obterCardPorId(id: number): Promise<Card | null> {
-    const card = this.cards.find(c => c.Id === id);
+    const card = this.cards.find(c => c.id === id);
     return card || null;
   }
 
   async atualizarCard(card: Card): Promise<Card> {
-    const index = this.cards.findIndex(c => c.Id === card.Id);
+    const index = this.cards.findIndex(c => c.id === card.id);
     if (index !== -1) {
       this.cards[index] = card;
       return card;
@@ -29,7 +29,7 @@ export class InMemoryCardRepository implements CardRepository {
   }
 
   async excluirCard(id: number): Promise<boolean> {
-    const index = this.cards.findIndex(c => c.Id === id);
+    const index = this.cards.findIndex(c => c.id === id);
     if (index !== -1) {
       this.cards.splice(index, 1);
       return true;
