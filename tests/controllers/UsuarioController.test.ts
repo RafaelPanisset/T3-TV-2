@@ -88,7 +88,7 @@ describe('UsuarioController', () => {
     });
 
     const req = {
-      params: { id: '1' },
+      params: { id: 1 },
     };
     const res = {
       status: jest.fn().mockReturnThis(),
