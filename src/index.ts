@@ -15,6 +15,11 @@ const port = 3001; // You can change this to the desired port number
 // Middleware to parse incoming JSON data
 app.use(express.json());
 
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Replace with your React app's URL
+}));
+
 app.get('/', (req, res) => {
   res.send('Online');
 });
@@ -27,9 +32,6 @@ app.use(lutadorRoutes);
 app.use(usuarioRoutes);
 
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your React app's URL
-}));
 
 // Start the server
 app.listen(port, () => {
