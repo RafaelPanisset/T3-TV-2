@@ -28,7 +28,7 @@ app.use(usuarioRoutes);
 
 
 app.use(cors({
-  origin: '*'
+  origin: 'http://localhost:3000', // Replace with your React app's URL
 }));
 
 // Start the server
