@@ -6,11 +6,10 @@ export class InMemoryCardRepository implements CardRepository {
   private cards: Card[] = [];
 
   async criarCard(card: Card): Promise<Card> {
-    card.id = this.cards.length + 1; 
-    this.cards.unshift(card); 
+    this.cards.push(card);
     return card;
   }
-  
+
   async obterCards(): Promise<Card[]> {
     return this.cards;
   }

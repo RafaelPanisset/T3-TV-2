@@ -10,7 +10,7 @@ import usuarioRoutes from '../src/Routes/usuarioRoutes';
 const app: Express = express();
 const cors = require('cors');
 
-const port = 3000; // You can change this to the desired port number
+const port = 3001; // You can change this to the desired port number
 
 // Middleware to parse incoming JSON data
 app.use(express.json());
@@ -27,7 +27,9 @@ app.use(lutadorRoutes);
 app.use(usuarioRoutes);
 
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 // Start the server
 app.listen(port, () => {
