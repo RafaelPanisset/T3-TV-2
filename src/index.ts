@@ -10,7 +10,7 @@ import usuarioRoutes from '../src/Routes/usuarioRoutes';
 const app: Express = express();
 const cors = require('cors');
 
-const port = 3001; // You can change this to the desired port number
+const port = 3006; // You can change this to the desired port number
 
 // Middleware to parse incoming JSON data
 app.use(express.json());

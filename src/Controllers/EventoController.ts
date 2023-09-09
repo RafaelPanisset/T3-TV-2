@@ -13,8 +13,8 @@ export class EventoController {
 
   async criarEvento(req: Request, res: Response): Promise<void> {
     try {
-      const { nome, data, local } = req.body;
-      const evento: Evento = { id: 0, nome, data, local };
+      const { id, nome, data, local } = req.body;
+      const evento: Evento = { id, nome, data, local };
       const novoEvento = await this.criarEventoUseCase.execute(evento);
       res.status(201).json(novoEvento);
     } catch (error) {
