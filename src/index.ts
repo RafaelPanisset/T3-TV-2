@@ -25,7 +25,7 @@ app.use(express.json());
 
 
 app.use(cors({
-  origin: 'http://localhost:3011', // Replace with your React app's URL
+  origin: 'http://localhost:3000', // Replace with your React app's URL
 }));
 
 app.get('/', (req, res) => {
