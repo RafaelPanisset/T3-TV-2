@@ -5,6 +5,8 @@ import { LutadorRepository } from '../Repositories/contract/LutadorRepository';
 export class InMemoryLutadorRepository implements LutadorRepository {
   private lutadores: Lutador[] = [];
 
+  
+
   async criarLutador(lutador: Lutador): Promise<Lutador> {
     this.lutadores.push(lutador);
     return lutador;
@@ -29,6 +31,7 @@ export class InMemoryLutadorRepository implements LutadorRepository {
   }
 
   async excluirLutador(id: number): Promise<boolean> {
+    console.log(this.lutadores, id, "dffff");
     const index = this.lutadores.findIndex(l => l.id === id);
     if (index !== -1) {
       this.lutadores.splice(index, 1);

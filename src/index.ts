@@ -7,21 +7,54 @@ import lutaRoutes from '../src/Routes/lutaRoutes';
 import lutadorRoutes from '../src/Routes/lutadorRoutes';
 import usuarioRoutes from '../src/Routes/usuarioRoutes';
 
+import { InMemoryUsuarioRepository } from '../src/Repositories/InMemoryUsuarioRepository';
+
+const jwt = require('jsonwebtoken');
+const { generateToken } = require('../src/auth/tokengenerate');
+import { Request, Response } from "express";
+
+
+
 const app: Express = express();
 const cors = require('cors');
 
-const port = 3006; // You can change this to the desired port number
+const port = 3029; // You can change this to the desired port number
 
 // Middleware to parse incoming JSON data
 app.use(express.json());
 
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your React app's URL
+  origin: 'http://localhost:3011', // Replace with your React app's URL
 }));
 
 app.get('/', (req, res) => {
   res.send('Online');
+});
+
+
+
+interface RequestWithBody extends Request {
+  body: {
+    [key: string]: string;
+  };
+}
+
+// Login route
+app.post('/login', (req: RequestWithBody, res: Response) => {
+  const { username, password } = req.body;
+
+  // Authenticate the user (replace this with your authentication logic)
+  const userRepository = new InMemoryUsuarioRepository(); // Initialize your user repository
+  const user = userRepository.authenticateUser(username, password);
+
+  if (user) {
+    // Generate a JWT token and send it as a response
+    const token = generateToken(user);
+    res.json({ token });
+  } else {
+    res.status(401).json({ message: 'Authentication failed' });
+  }
 });
 
 // Mount the event routes
@@ -30,6 +63,8 @@ app.use(cardRouter);
 app.use(lutaRoutes);
 app.use(lutadorRoutes);
 app.use(usuarioRoutes);
+
+
 
 
 

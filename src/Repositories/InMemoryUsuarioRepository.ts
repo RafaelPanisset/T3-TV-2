@@ -5,6 +5,19 @@ import { Usuario } from '../Entities/Usuario';
 export class InMemoryUsuarioRepository implements UsuarioRepository {
   private usuarios: Usuario[] = [];
 
+  async authenticateUser(username: string, password: string): Promise<Usuario | null> {
+    // Find a user with the provided username
+    const user = this.usuarios.find(u => u.nomeUsuario === username);
+
+    // Check if the user exists and if the password matches
+    if (user && user.senha === password) {
+      // Return the authenticated user
+      return user;
+    }
+
+    return null;
+  }
+
   async criarUsuario(usuario: Usuario): Promise<Usuario> {
     this.usuarios.push(usuario);
     return usuario;
