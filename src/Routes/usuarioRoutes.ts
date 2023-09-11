@@ -14,5 +14,6 @@ usuarioRoutes.get('/usuarios', usuarioController.obterUsuarios.bind(usuarioContr
 usuarioRoutes.get('/usuarios/:id', usuarioController.obterUsuarioPorId.bind(usuarioController));
 usuarioRoutes.put('/usuarios/:id', usuarioController.atualizarUsuario.bind(usuarioController));
 usuarioRoutes.delete('/usuarios/:id', usuarioController.excluirUsuario.bind(usuarioController));
+usuarioRoutes.post('/usuarios/logar', usuarioController.logar.bind(usuarioController));
 
 export default usuarioRoutes;

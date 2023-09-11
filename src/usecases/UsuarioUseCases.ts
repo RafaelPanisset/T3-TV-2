@@ -24,4 +24,9 @@ export class UsuarioUseCases {
   async excluirUsuario(id: number): Promise<boolean> {
     return this.usuarioRepository.excluirUsuario(id);
   }
+
+
+  async logar(username: string, password: string): Promise<boolean> {
+    return this.usuarioRepository.logar(username, password);
+  }
 }
