@@ -24,8 +24,14 @@ const port = 3034; // You can change this to the desired port number
 app.use(express.json());
 
 
+
+const allowedOrigins = [
+  'http://localhost:3000', 
+  'https://ufc-twaw.onrender.com'
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your React app's URL
+  origin: allowedOrigins, 
 }));
 
 app.get('/', (req, res) => {
