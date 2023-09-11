@@ -1,6 +1,7 @@
 // InMemoryUsuarioRepository.ts
 import { UsuarioRepository } from '../Repositories/contract/UsuarioRepository';
 import { Usuario } from '../Entities/Usuario';
+const jwt = require('jsonwebtoken');
 
 export class InMemoryUsuarioRepository implements UsuarioRepository {
   private usuarios: Usuario[] = [];
@@ -56,8 +57,19 @@ export class InMemoryUsuarioRepository implements UsuarioRepository {
 
     const index = this.usuarios.findIndex(u => u.nomeUsuario === username && u.senha === password);
     if (index !== -1) {
-      return true;
+
+      const payload = {
+        username: username,
+        senha: password,
+        // Add other user-related data as needed
+      };
+      // Sign the token with a secret key
+      const token = jwt.sign(payload, 'topicos-avacados-2', { expiresIn: '1h' });
+
+      return token;
     }
+    else {
     return false;
   }
+}
 }
