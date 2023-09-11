@@ -52,9 +52,6 @@ export class InMemoryUsuarioRepository implements UsuarioRepository {
   }
 
   async logar(username: string, password: string): Promise<boolean> {
-    console.log("dddd", this.usuarios);
-    console.log("ssssssss", username, password);
-
     const index = this.usuarios.findIndex(u => u.nomeUsuario === username && u.senha === password);
     if (index !== -1) {
 
@@ -69,7 +66,7 @@ export class InMemoryUsuarioRepository implements UsuarioRepository {
       return token;
     }
     else {
-    return false;
+      return false;
+    }
   }
-}
 }
